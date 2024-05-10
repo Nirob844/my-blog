@@ -1,10 +1,10 @@
 const router = require("express").Router();
-//const { controllers: articleController } = require("../api/v1/article");
+const authController = require("../controller/auth");
 
-// Auth routes
-// router
-//   .post('/api/v1/auth/register', authController.register)
-//   .post('/api/v1/auth/login', authController.login);
+//Auth routes
+router
+  .post("/api/v1/auth/register", authController.register)
+  .post("/api/v1/auth/login", authController.login);
 
 // Article routes
 // router
