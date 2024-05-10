@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const authController = require("../controller/auth");
 const userController = require("../controller/user");
+const authenticate = require("../middleware/authenticate");
+const authorize = require("../middleware/authorize");
 
 //Auth routes
 router
@@ -10,8 +12,8 @@ router
 // User routes
 router
   .route("/api/v1/users")
-  .get(userController.findAllItems)
-  .post(userController.create);
+  .get(authenticate, authorize(["admin"]), userController.findAllItems)
+  .post(authenticate, authorize(["admin"]), userController.create);
 
 // Article routes
 // router
